@@ -1,9 +1,24 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Models;
+using Models.DataTransfer;
+using Repository;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Logic
+namespace Service
 {
     public class Logic
     {
+        public Logic() { }
+        public Logic(Repo repo, ILogger<Repo> logger)
+        {
+            _repo = repo;
+            _logger = logger;
+        }
+        private readonly Repo _repo;
+        private readonly ILogger<Repo> _logger;
         /// <summary>
         /// Get an EquipmentRequest by ID
         /// </summary>
@@ -54,7 +69,7 @@ namespace Logic
                 ItemId = createEquipmentRequestDto.ItemID,
                 Status = createEquipmentRequestDto.Status
             };
-            await _repo.equipmentRequests.AddAsync(newEquipmentRequest);
+            await _repo.EquipmentRequests.AddAsync(newEquipmentRequest);
             await _repo.CommitSave();
             return newEquipmentRequest;
         }
@@ -78,7 +93,7 @@ namespace Logic
         /// <returns>EquipmentItem</returns>
         public async Task<EquipmentItem> GetEquipmentItemByName(string eqName)
         {
-            return await _repo.equipmentItems.FirstOrDefaultAsync(x => x.Description == eqName);
+            return await _repo.EquipmentItems.FirstOrDefaultAsync(x => x.Description == eqName);
         }
     }
 }
