@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Model;
 
 namespace Repository
 {
     public class EquipmentContext : DbContext
     {
-        public DbSet<EquipmentRequest> equipmentRequests;
-        public DbSet<EquipmentItem> equipmentItems;
+        public DbSet<EquipmentItem> EquipmentItems { get; set; }
+        public DbSet<EquipmentRequest> EquipmentRequests;
 
         public EquipmentContext() { }
         public EquipmentContext(DbContextOptions<EquipmentContext> options) : base(options) { }
-
     }
 }

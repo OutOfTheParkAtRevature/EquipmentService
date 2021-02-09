@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Model;
 
 namespace Repository
 {
@@ -12,37 +11,34 @@ namespace Repository
     {
         private readonly EquipmentContext _equipmentContext;
         private readonly ILogger _logger;
-        public DbSet<EquipmentRequest> equipmentRequests;
-        public DbSet<EquipmentItem> equipmentItems;
+        public DbSet<EquipmentRequest> EquipmentRequests;
+        public DbSet<EquipmentItem> EquipmentItems;
 
         public Repo(EquipmentContext equipmentContext, ILogger<Repo> logger)
         {
             _equipmentContext = equipmentContext;
             _logger = logger;
-            this.equipmentItems = _equipmentContext.equipmentItems;
-            this.equipmentRequests = _equipmentContext.equipmentRequests;
         }
 
         public async Task CommitSave()
         {
             await _equipmentContext.SaveChangesAsync();
         }
-
         public async Task<EquipmentRequest> GetEquipmentRequestById(int id)
         {
-            return await equipmentRequests.FindAsync(id);
+            return await EquipmentRequests.FindAsync(id);
         }
         public async Task<IEnumerable<EquipmentRequest>> GetEquipmentRequests()
         {
-            return await equipmentRequests.ToListAsync();
+            return await EquipmentRequests.ToListAsync();
         }
         public async Task<EquipmentItem> GetEquipmentItemById(int id)
         {
-            return await equipmentItems.FindAsync(id);
+            return await EquipmentItems.FindAsync(id);
         }
         public async Task<IEnumerable<EquipmentItem>> GetEquipmentItems()
         {
-            return await equipmentItems.ToListAsync();
+            return await EquipmentItems.ToListAsync();
         }
     }
 }

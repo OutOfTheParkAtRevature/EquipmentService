@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Model.csproj" />
+    <ProjectReference Include="..\Repo\Repository.csproj" />
   </ItemGroup>
 
 </Project>

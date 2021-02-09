@@ -21,10 +21,10 @@ namespace EquipmentService
     {
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
-        public IConfiguration _configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,14 +33,12 @@ namespace EquipmentService
             services.AddScoped<Logic>();
             services.AddScoped<Repo>();
             services.AddControllers();
-            services.AddDbContext<EquipmentContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("LocalDB")));
-
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EquipmentService", Version = "v1" });
             });
+
+            services.AddDbContext<EquipmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

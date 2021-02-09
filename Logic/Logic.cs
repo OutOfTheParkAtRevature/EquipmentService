@@ -1,22 +1,24 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Models;
+using Models.DataTransfer;
+using Repository;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Model;
-using Repository;
 
 namespace Service
-
 {
     public class Logic
     {
-        private readonly ILogger _logger;
-        public Repo _repo;
-        public Logic(Repo repo)
+        public Logic() { }
+        public Logic(Repo repo, ILogger<Repo> logger)
         {
-            this._repo = repo;
+            _repo = repo;
+            _logger = logger;
         }
+        private readonly Repo _repo;
+        private readonly ILogger<Repo> _logger;
         /// <summary>
         /// Get an EquipmentRequest by ID
         /// </summary>
@@ -64,10 +66,10 @@ namespace Service
                 TeamID = createEquipmentRequestDto.TeamID,
                 RequestDate = DateTime.Now,
                 Message = createEquipmentRequestDto.Message,
-                ItemID = createEquipmentRequestDto.ItemID,
+                ItemId = createEquipmentRequestDto.ItemID,
                 Status = createEquipmentRequestDto.Status
             };
-            await _repo.equipmentRequests.AddAsync(newEquipmentRequest);
+            await _repo.EquipmentRequests.AddAsync(newEquipmentRequest);
             await _repo.CommitSave();
             return newEquipmentRequest;
         }
@@ -91,7 +93,7 @@ namespace Service
         /// <returns>EquipmentItem</returns>
         public async Task<EquipmentItem> GetEquipmentItemByName(string eqName)
         {
-            return await _repo.equipmentItems.FirstOrDefaultAsync(x => x.Description == eqName);
+            return await _repo.EquipmentItems.FirstOrDefaultAsync(x => x.Description == eqName);
         }
     }
 }
