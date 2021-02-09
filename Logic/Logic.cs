@@ -1,9 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Model;
+using Repository;
 
-namespace Logic
+namespace Service
+
 {
     public class Logic
     {
+        private readonly ILogger _logger;
+        public Repo _repo;
+        public Logic(Repo repo)
+        {
+            this._repo = repo;
+        }
         /// <summary>
         /// Get an EquipmentRequest by ID
         /// </summary>
@@ -51,7 +64,7 @@ namespace Logic
                 TeamID = createEquipmentRequestDto.TeamID,
                 RequestDate = DateTime.Now,
                 Message = createEquipmentRequestDto.Message,
-                ItemId = createEquipmentRequestDto.ItemID,
+                ItemID = createEquipmentRequestDto.ItemID,
                 Status = createEquipmentRequestDto.Status
             };
             await _repo.equipmentRequests.AddAsync(newEquipmentRequest);

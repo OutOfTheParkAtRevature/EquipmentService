@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Model.csproj" />
-    <ProjectReference Include="..\Repo\Repo.csproj" />
+    <ProjectReference Include="..\Repo\Repository.csproj" />
     <ProjectReference Include="..\Logic\Service.csproj" />
   </ItemGroup>
 
