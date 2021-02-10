@@ -18,6 +18,8 @@ namespace Repository
         {
             _equipmentContext = equipmentContext;
             _logger = logger;
+            EquipmentRequests = equipmentContext.EquipmentRequests;
+            EquipmentItems = equipmentContext.EquipmentItems;
         }
 
         public async Task CommitSave()
