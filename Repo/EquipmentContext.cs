@@ -9,7 +9,7 @@ namespace Repository
     public class EquipmentContext : DbContext
     {
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
-        public DbSet<EquipmentRequest> EquipmentRequests;
+        public DbSet<EquipmentRequest> EquipmentRequests { get; set; }
 
         public EquipmentContext() { }
         public EquipmentContext(DbContextOptions<EquipmentContext> options) : base(options) { }
