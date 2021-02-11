@@ -11,9 +11,9 @@ namespace Models.DataTransfer
     public class CreateEquipmentRequestDto
     {
         [DisplayName("User ID")]
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
         [DisplayName("Team ID")]
-        public int TeamID { get; set; }
+        public Guid TeamID { get; set; }
         [DisplayName("Message")]
         public string Message { get; set; }
         [DisplayName("Item ID")]

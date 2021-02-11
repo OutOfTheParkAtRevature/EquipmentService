@@ -14,13 +14,13 @@ namespace Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Request ID")]
-        public int RequestID { get; set; }
+        public Guid RequestID { get; set; }
         [DisplayName("User ID")]
         [ForeignKey("UserID")]
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
         [DisplayName("Team ID")]
         [ForeignKey("TeamID")]
-        public int TeamID { get; set; }
+        public Guid TeamID { get; set; }
         [DisplayName("Request Date")]
         [DataType(DataType.DateTime)]
         public DateTime RequestDate { get; set; }
