@@ -34,7 +34,7 @@ namespace Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<EquipmentRequest> GetEquipmentRequestById(int id)
+        public async Task<EquipmentRequest> GetEquipmentRequestById(Guid id)
         {
             return await EquipmentRequests.FindAsync(id);
         }

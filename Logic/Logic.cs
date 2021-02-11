@@ -24,7 +24,7 @@ namespace Service
         /// </summary>
         /// <param name="id">EquipmentRequestID</param>
         /// <returns>EquipmentRequest</returns>
-        public async Task<EquipmentRequest> GetEquipmentRequestById(int id)
+        public async Task<EquipmentRequest> GetEquipmentRequestById(Guid id)
         {
             return await _repo.GetEquipmentRequestById(id);
         }
@@ -79,7 +79,7 @@ namespace Service
         /// <param name="id">EqupmentRequestID</param>
         /// <param name="editEquipmentRequestDto">new information from input</param>
         /// <returns>modified EquipmentRequest</returns>
-        public async Task<EquipmentRequest> EditEquipmentRequest(int id, EditEquipmentRequestDto editEquipmentRequestDto)
+        public async Task<EquipmentRequest> EditEquipmentRequest(Guid id, EditEquipmentRequestDto editEquipmentRequestDto)
         {
             EquipmentRequest editedEquipmentRequest = await GetEquipmentRequestById(id);
             if (editedEquipmentRequest != null && editedEquipmentRequest.Status != editEquipmentRequestDto.Status) { editedEquipmentRequest.Status = editEquipmentRequestDto.Status; }
