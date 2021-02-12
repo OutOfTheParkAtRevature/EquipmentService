@@ -30,7 +30,7 @@ namespace Service.Tests {
             var ctx = new EquipmentContext(opt);
             var repo = new Repo(ctx, null);
             var logic = new Logic(repo, null);
-            EquipmentRequest req = await logic.GetEquipmentRequestById(0);
+            EquipmentRequest req = await logic.GetEquipmentRequestById(new Guid());
             Assert.Null(req);
         }
         [Fact]
