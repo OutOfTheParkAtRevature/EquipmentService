@@ -4,14 +4,13 @@ trigger:
 pr:
 - staging
 
-pool:
-  vmImage: windows-latest
-
 stages:
   - stage:
     displayName: Analyze
     jobs:
       - job: analyze
+        pool:
+          vmImage: windows-latest
         steps:
           - task: DotNetCoreCLI@2
             displayName: Restore Solution
@@ -43,4 +42,21 @@ stages:
             displayName: Run Code Analysis
           - task: SonarCloudPublish@1
             displayName: Publish Code Analysis
-
+  - stage:
+    displayName: Register
+    jobs:
+      - job: register
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              command: login
+              containerRegistry: 'Container Registry Connection'
+          - script: |
+              docker image build -t outofthepart15226.azurecr.io/equipment-service:latest .
+              docker image push outofthepart15226.azurecr.io/equipment-service:latest
+          - task: Docker@2
+            inputs:
+              command: logout
+              containerRegistry: 'Container Registry Connection'
