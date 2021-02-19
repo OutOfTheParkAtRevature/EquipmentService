@@ -54,8 +54,8 @@ stages:
               command: login
               containerRegistry: 'Container Registry Connection'
           - script: |
-              docker image build -t outofthepart15226.azurecr.io/equipment-service:latest .
-              docker image push outofthepart15226.azurecr.io/equipment-service:latest
+              docker image build -t outofthepark15226.azurecr.io/equipment-service:latest .
+              docker image push outofthepark15226.azurecr.io/equipment-service:latest
           - task: Docker@2
             inputs:
               command: logout
