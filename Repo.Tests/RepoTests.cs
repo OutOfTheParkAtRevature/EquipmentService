@@ -27,7 +27,7 @@ namespace Repository.Tests
                 .Options;
             var ctx = new EquipmentContext(opt);
             var repo = new Repo(ctx, null);
-            EquipmentRequest req = await repo.GetEquipmentRequestById(0);
+            EquipmentRequest req = await repo.GetEquipmentRequestById(new Guid());
             Assert.Null(req);
         }
         [Fact]
