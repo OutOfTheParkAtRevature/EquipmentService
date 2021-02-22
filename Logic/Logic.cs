@@ -51,6 +51,7 @@ namespace Service
         /// <returns>list of EquipmentRequests</returns>
         public async Task<IEnumerable<EquipmentItem>> GetEquipmentItems()
         {
+            await _repo.SeedEquipment();
             return await _repo.GetEquipmentItems();
         }
         /// <summary>

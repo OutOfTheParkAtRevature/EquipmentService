@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Repository
@@ -62,6 +63,38 @@ namespace Repository
         public async Task<IEnumerable<EquipmentItem>> GetEquipmentItems()
         {
             return await EquipmentItems.ToListAsync();
+        }
+
+        public async Task SeedEquipment()
+        {
+            if (!EquipmentItems.Any())
+            {
+                EquipmentItem eq1 = new EquipmentItem()
+                {
+                    EquipmentID = 1,
+                    Description = "Uniform Jersey"
+                };
+                EquipmentItem eq2 = new EquipmentItem()
+                {
+                    EquipmentID = 2,
+                    Description = "Uniform Shorts"
+                };
+                EquipmentItem eq3 = new EquipmentItem()
+                {
+                    EquipmentID = 3,
+                    Description = "Team-branded Sweat Band Wrist"
+                };
+                EquipmentItem eq4 = new EquipmentItem()
+                {
+                    EquipmentID = 4,
+                    Description = "Team-branded Sweat Band Head"
+                };
+                await EquipmentItems.AddAsync(eq1);
+                await EquipmentItems.AddAsync(eq2);
+                await EquipmentItems.AddAsync(eq3);
+                await EquipmentItems.AddAsync(eq4);
+                await CommitSave();
+            }
         }
     }
 }
