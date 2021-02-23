@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,7 +30,7 @@ namespace Model.DataTransfer
         [DisplayName("Item ID")]
         [ForeignKey("EquipmentID")]
         public int ItemId { get; set; }
-        public ItemDto Item { get; set; }
+        public EquipmentItem Item { get; set; }
         [DisplayName("Request Status")]
         public string Status { get; set; }
     }
