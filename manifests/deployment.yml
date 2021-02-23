@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equipment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: equipment-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: equipment-service
+    spec:
+      containers:
+        - name: equipment-service
+          image: outofthepark15226.azurecr.io/equipment-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: equip-http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: equipment-service-deployment
+spec:
+  ports:
+    - name: equipment-service
+      port: 80
+      targetPort: equip-http
+  selector:
+    app: equipment-service
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: equipment-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: equipment-service.1c50b018f5784721b39b.eastus.aksapp.io
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          serviceName: equipment-service-deployment
+          servicePort: 80
+        path: /equipment(/|$)(.*)
