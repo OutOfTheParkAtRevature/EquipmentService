@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model.DataTransfer;
 using Models;
 using Models.DataTransfer;
 using Service;
@@ -15,20 +16,38 @@ namespace EquipmentService.Controllers
     public class EquipmentController : ControllerBase
     {
         private readonly Logic _logic;
+        private readonly Mapper _mapper;
 
-        public EquipmentController(Logic logic)
+        public EquipmentController(Logic logic, Mapper mapper)
         {
             _logic = logic;
+            _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IEnumerable<EquipmentRequest>> GetEquipmentRequests()
+        public async Task<IEnumerable<EquipmentRequestDto>> GetEquipmentRequests()
         {
-            return await _logic.GetEquipmentRequests();
+            IEnumerable<EquipmentRequest> requests = await _logic.GetEquipmentRequests();
+            List<EquipmentRequestDto> convertedRequests = new List<EquipmentRequestDto>();
+
+            foreach (EquipmentRequest request in requests)
+            {
+                EquipmentRequestDto convert = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
+                convertedRequests.Add(convert);
+            }
+
+            // add logic to get user, team, item
+
+            return convertedRequests;
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<EquipmentRequest>> GetEquipmentRequest(Guid id)
+        public async Task<ActionResult<EquipmentRequestDto>> GetEquipmentRequest(Guid id)
         {
-            return await _logic.GetEquipmentRequestById(id);
+            EquipmentRequest request = await _logic.GetEquipmentRequestById(id);
+            EquipmentRequestDto convertedRequest = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
+
+            // add logic to get user, team, item
+
+            return convertedRequest;
         }
         [HttpPost]
         public async Task<ActionResult<EquipmentRequest>> CreateEquipmentRequest(CreateEquipmentRequestDto equipmentRequest)

@@ -34,6 +34,7 @@ namespace EquipmentService
         {
             services.AddScoped<EquipmentContext>();
             services.AddScoped<Logic>();
+            services.AddScoped<Mapper>();
             services.AddScoped<Repo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
