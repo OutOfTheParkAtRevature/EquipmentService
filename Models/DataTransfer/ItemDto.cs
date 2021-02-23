@@ -15,4 +15,3 @@ namespace Model.DataTransfer
         public string Description { get; set; }
     }
 }
-}
