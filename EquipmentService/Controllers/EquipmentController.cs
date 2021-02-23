@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.DataTransfer;
 using Models;
 using Models.DataTransfer;
+using Newtonsoft.Json;
 using Service;
 
 namespace EquipmentService.Controllers
@@ -29,10 +33,28 @@ namespace EquipmentService.Controllers
             IEnumerable<EquipmentRequest> requests = await _logic.GetEquipmentRequests();
             List<EquipmentRequestDto> convertedRequests = new List<EquipmentRequestDto>();
 
-            foreach (EquipmentRequest request in requests)
-            {
-                EquipmentRequestDto convert = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
-                convertedRequests.Add(convert);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            using (var httpClient = new HttpClient()) { 
+                   
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                foreach (EquipmentRequest request in requests)
+                {
+                    EquipmentRequestDto convert = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
+                    var response = await httpClient.GetAsync($"api/Team/{request.TeamID}");
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var team = JsonConvert.DeserializeObject<TeamDto>(apiResponse);
+                    convert.Team = team;
+
+                    response = await httpClient.GetAsync($"api/User/{request.UserID}");
+                    apiResponse = await response.Content.ReadAsStringAsync();
+                    var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
+                    convert.User = user;
+
+                    EquipmentItem item = await _logic.GetEquipmentItemtById(request.ItemId);
+                    convert.Item = item;
+                    convertedRequests.Add(convert);
+                }
             }
 
             // add logic to get user, team, item
@@ -45,7 +67,24 @@ namespace EquipmentService.Controllers
             EquipmentRequest request = await _logic.GetEquipmentRequestById(id);
             EquipmentRequestDto convertedRequest = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
 
-            // add logic to get user, team, item
+            var token = await HttpContext.GetTokenAsync("access_token");
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await httpClient.GetAsync($"api/Team/{request.TeamID}");
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                var team = JsonConvert.DeserializeObject<TeamDto>(apiResponse);
+                convertedRequest.Team = team;
+
+                response = await httpClient.GetAsync($"api/User/{request.UserID}");
+                apiResponse = await response.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
+                convertedRequest.User = user;
+
+                EquipmentItem item = await _logic.GetEquipmentItemtById(request.ItemId);
+                convertedRequest.Item = item;
+            }
 
             return convertedRequest;
         }
