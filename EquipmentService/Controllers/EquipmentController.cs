@@ -51,7 +51,7 @@ namespace EquipmentService.Controllers
                     var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
                     convert.User = user;
 
-                    EquipmentItem item = await _logic.GetEquipmentItemtById(request.ItemId);
+                    EquipmentItem item = await _logic.GetEquipmentItemById(request.ItemId);
                     convert.Item = item;
                     convertedRequests.Add(convert);
                 }
@@ -82,7 +82,7 @@ namespace EquipmentService.Controllers
                 var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
                 convertedRequest.User = user;
 
-                EquipmentItem item = await _logic.GetEquipmentItemtById(request.ItemId);
+                EquipmentItem item = await _logic.GetEquipmentItemById(request.ItemId);
                 convertedRequest.Item = item;
             }
 
@@ -106,7 +106,7 @@ namespace EquipmentService.Controllers
         [HttpGet("items/{id}")]
         public async Task<ActionResult<EquipmentItem>> GetEquipmentItemById(int id)
         {
-            return await _logic.GetEquipmentItemtById(id);
+            return await _logic.GetEquipmentItemById(id);
         }
 
         //Probably need things like get by user id, get by team, ect
