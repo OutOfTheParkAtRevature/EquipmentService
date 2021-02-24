@@ -41,7 +41,7 @@ namespace Service
         /// </summary>
         /// <param name="id">EquipmentRequestID</param>
         /// <returns>EquipmentRequest</returns>
-        public async Task<EquipmentItem> GetEquipmentItemtById(int id)
+        public async Task<EquipmentItem> GetEquipmentItemById(int id)
         {
             return await _repo.GetEquipmentItemById(id);
         }

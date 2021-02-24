@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repo\Reposito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipmentService.Tests", "EquipmentService.Tests\EquipmentService.Tests.csproj", "{84611E04-8D21-4955-8AB3-36FB290A7BD7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Tests", "Logic.Tests\Logic.Tests.csproj", "{36867C11-5A3A-40DA-B89A-D0BB5871E965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Tests", "Logic.Tests\Service.Tests.csproj", "{36867C11-5A3A-40DA-B89A-D0BB5871E965}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Tests", "Models.Tests\Models.Tests.csproj", "{114F1716-AF20-49C9-8BC2-1D8A477B5B13}"
 EndProject
