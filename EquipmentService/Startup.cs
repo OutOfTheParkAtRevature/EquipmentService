@@ -42,7 +42,7 @@ namespace EquipmentService
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EquipmentService", Version = "v1" });
             });
 
-            services.AddDbContext<EquipmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
+            services.AddDbContext<EquipmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var jwtSettings = Configuration.GetSection("JwtSettings");

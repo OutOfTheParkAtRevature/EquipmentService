@@ -77,17 +77,17 @@ namespace Repository
                 EquipmentItem eq2 = new EquipmentItem()
                 {
                     EquipmentID = 2,
-                    Description = "Uniform Shorts"
+                    Description = "Uniform Pants"
                 };
                 EquipmentItem eq3 = new EquipmentItem()
                 {
                     EquipmentID = 3,
-                    Description = "Team-branded Sweat Band Wrist"
+                    Description = "Helmet"
                 };
                 EquipmentItem eq4 = new EquipmentItem()
                 {
                     EquipmentID = 4,
-                    Description = "Team-branded Sweat Band Head"
+                    Description = "Ball Cap"
                 };
                 await EquipmentItems.AddAsync(eq1);
                 await EquipmentItems.AddAsync(eq2);
