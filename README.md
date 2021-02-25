@@ -1,7 +1,7 @@
 # EquipmentService
 
 ## Description
-Allows parents to make equipment requests for their child, which involves a descriptive message explaining why they need replacement equipment and the equipment item they want. The coach would then have the ability to edit the request status from 'Pending' to 'Approved' and finally 'Fulfilled'. The parent can see the list of requests they made and the coach can see a list of requests made from within their team.
+Allows Parents to make equipment requests for their child, which involves a descriptive message explaining why they need replacement equipment and the equipment item they want. The Head Coach would then have the ability to edit the request status from 'Pending' to 'Approved' and finally 'Fulfilled'. The Parent can see the list of requests they made and the Head coach can see a list of requests made from within their team.
 
 ## Functionality
 * Create equipmnet request
