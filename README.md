@@ -19,6 +19,8 @@ Allows parents to make equipment requests for their child, which involves a desc
 ```bash
   git push --set-upstream origin
 ```
+3. Use IDE like Visual Studio to run application. This will bring Swagger up in the browser and allow you to test the service.
+
 ## Links
 This Repository is part of an application designed with a Microservice Architecture. The other parts of the application are listed below:
 
