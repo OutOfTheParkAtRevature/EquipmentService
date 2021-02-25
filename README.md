@@ -26,7 +26,6 @@ This Repository is part of an application designed with a Microservice Architect
 
 * Album Service: https://github.com/OutOfTheParkAtRevature/AlbumService
 * Calendar Service: https://github.com/OutOfTheParkAtRevature/CalendarService
-* Equipment Service: https://github.com/OutOfTheParkAtRevature/EquipmentService
 * Frontend: https://github.com/OutOfTheParkAtRevature/Frontend
 * Gateway Service: https://github.com/OutOfTheParkAtRevature/Gateway
 * League Service: https://github.com/OutOfTheParkAtRevature/LeagueService
@@ -35,4 +34,5 @@ This Repository is part of an application designed with a Microservice Architect
 * Notification Service: https://github.com/OutOfTheParkAtRevature/NotificationService
 * Playbook Service: https://github.com/OutOfTheParkAtRevature/PlaybookService
 * Season Service: https://github.com/OutOfTheParkAtRevature/SeasonService
+* Stat Service: https://github.com/OutOfTheParkAtRevature/StatService.git
 * User Service: https://github.com/OutOfTheParkAtRevature/UserService
