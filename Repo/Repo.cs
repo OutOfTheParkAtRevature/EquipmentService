@@ -69,27 +69,19 @@ namespace Repository
         {
             if (!EquipmentItems.Any())
             {
-                EquipmentItem eq1 = new EquipmentItem()
-                {
-                    EquipmentID = 1,
-                    Description = "Uniform Jersey"
-                };
+
                 EquipmentItem eq2 = new EquipmentItem()
                 {
-                    EquipmentID = 2,
                     Description = "Uniform Pants"
                 };
                 EquipmentItem eq3 = new EquipmentItem()
                 {
-                    EquipmentID = 3,
                     Description = "Helmet"
                 };
                 EquipmentItem eq4 = new EquipmentItem()
                 {
-                    EquipmentID = 4,
                     Description = "Ball Cap"
                 };
-                await EquipmentItems.AddAsync(eq1);
                 await EquipmentItems.AddAsync(eq2);
                 await EquipmentItems.AddAsync(eq3);
                 await EquipmentItems.AddAsync(eq4);
