@@ -4,11 +4,11 @@
 Allows parents to make equipment requests for their child, which involves a descriptive message explaining why they need replacement equipment and the equipment item they want. The coach would then have the ability to edit the request status from 'Pending' to 'Approved' and finally 'Fulfilled'. The parent can see the list of requests they made and the coach can see a list of requests made from within their team.
 
 ## Functionality
-* Create Equipment Request
-* Edit Equipment Request
-* Get Requests by Id
-* Get a list of Requests
-* Get Equipment Item by Id
+* Create equipmnet request
+* Edit equipment request
+* Get requests by id
+* Get a list of requests
+* Get equipment item by id
 
 ## Getting Started
 1. Clone this repo to your local machine:
