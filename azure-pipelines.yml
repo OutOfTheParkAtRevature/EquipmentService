@@ -1,9 +1,6 @@
 trigger:
 - staging
 
-pr:
-- staging
-
 variables:
   equipmentRepository: 'equipment-service'
   tag: 'latest'
