@@ -36,21 +36,4 @@ spec:
       targetPort: equip-http
   selector:
     app: equipment-service
-  type: LoadBalancer
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: equipment-service-ingress
-  annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
-spec:
-  rules:
-  - host: equipment-service.1c50b018f5784721b39b.eastus.aksapp.io
-    http:
-      paths:
-      - pathType: Prefix
-        backend:
-          serviceName: equipment-service-deployment
-          servicePort: 80
-        path: /equipment(/|$)(.*)
+  type: ClusterIP
