@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.DataTransfer;
@@ -17,6 +18,7 @@ namespace EquipmentService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EquipmentController : ControllerBase
     {
         private readonly Logic _logic;
@@ -41,12 +43,12 @@ namespace EquipmentService.Controllers
                 foreach (EquipmentRequest request in requests)
                 {
                     EquipmentRequestDto convert = _mapper.ConvertEquipmentRequestToEquipmentRequestDto(request);
-                    var response = await httpClient.GetAsync($"api/Team/{request.TeamID}");
+                    var response = await httpClient.GetAsync($"http://10.0.118.116/api/Team/{request.TeamID}");
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var team = JsonConvert.DeserializeObject<TeamDto>(apiResponse);
                     convert.Team = team;
 
-                    response = await httpClient.GetAsync($"api/User/{request.UserID}");
+                    response = await httpClient.GetAsync($"http://10.0.167.177/api/User/{request.UserID}");
                     apiResponse = await response.Content.ReadAsStringAsync();
                     var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
                     convert.User = user;
@@ -72,12 +74,12 @@ namespace EquipmentService.Controllers
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await httpClient.GetAsync($"api/Team/{request.TeamID}");
+                var response = await httpClient.GetAsync($"http://10.0.118.116/api/Team/{request.TeamID}");
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 var team = JsonConvert.DeserializeObject<TeamDto>(apiResponse);
                 convertedRequest.Team = team;
 
-                response = await httpClient.GetAsync($"api/User/{request.UserID}");
+                response = await httpClient.GetAsync($"http://10.0.167.177/api/User/{request.UserID}");
                 apiResponse = await response.Content.ReadAsStringAsync();
                 var user = JsonConvert.DeserializeObject<UserDto>(apiResponse);
                 convertedRequest.User = user;
