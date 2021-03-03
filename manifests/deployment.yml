@@ -19,11 +19,11 @@ spec:
     spec:
       containers:
         - name: equipment-service
-          image: outofthepark15226.azurecr.io/equipment-service
+          image: outoftheparkacr.azurecr.io/equipment-service
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-              name: equip-http
+              name: http
 ---
 apiVersion: v1
 kind: Service
@@ -31,9 +31,10 @@ metadata:
   name: equipment-service-deployment
 spec:
   ports:
-    - name: equipment-service
+    - name: http
+      protocol: TCP
       port: 80
-      targetPort: equip-http
+      targetPort: 80
   selector:
     app: equipment-service
   type: ClusterIP
