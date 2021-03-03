@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repository.Migrations
 {
-    public partial class InitializeEquipmentDB : Migration
+    public partial class equipmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

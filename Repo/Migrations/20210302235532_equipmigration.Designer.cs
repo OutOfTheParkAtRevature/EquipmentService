@@ -10,8 +10,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(EquipmentContext))]
-    [Migration("20210224204201_InitializeEquipmentDB")]
-    partial class InitializeEquipmentDB
+    [Migration("20210302235532_equipmigration")]
+    partial class equipmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
